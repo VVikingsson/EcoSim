@@ -1,23 +1,26 @@
 import pygame as pg
 from settings import *
 from Environment import Environment
-def repaint(environemnt):
-
+from HeadsUpDisplay import HeadsUpDisplay
 
 def main():
     pg.init()
-    screen = pg.display.set_mode((HEIGHT, WIDTH))
+    screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     clock = pg.Clock()
     running = True
     environment = Environment()
+    hud = HeadsUpDisplay()
 
     while running:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
+
+        screen.blit(hud, (0,0))
+        pg.display.flip()
         
-        repaint(environment)
+        
         clock.tick(60)
 
 
